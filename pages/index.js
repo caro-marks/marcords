@@ -1,5 +1,6 @@
 import appConfig from '../config.json'
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
+import { useState } from 'react'
 
 function GlobalStyle() {
   return (
@@ -48,19 +49,9 @@ function Titulo(props) {
   )
 }
 
-// function HomePage() {
-//   return (
-//     <div>
-//       <Titulo tag="h1"> Welcome to the jungle! </Titulo>
-//       <h2> AluraCord lesk </h2>
-//     </div>
-//   )
-// }
-
-// export default HomePage
-
 export default function PaginaInicial() {
-  const username = 'caro-marks'
+  // const username = 'caro-marks'
+  const [username, setUserName] = useState('caro-marks')
 
   return (
     <>
@@ -120,7 +111,7 @@ export default function PaginaInicial() {
               {appConfig.name}
             </Text>
 
-            <TextField
+            {/* <TextField
               fullWidth
               textFieldColors={{
                 neutral: {
@@ -130,6 +121,16 @@ export default function PaginaInicial() {
                   backgroundColor: appConfig.theme.colors.neutrals[800],
                 },
               }}
+            /> */}
+            <input
+              value={username}
+              type="text"
+              onChange={(event) =>{
+                console.log('algo mudou', event.target.value)
+                const valor = event.target.value
+                setUserName(valor)
+              }
+              }
             />
             <Button
               type="submit"
