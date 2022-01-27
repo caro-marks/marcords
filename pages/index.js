@@ -111,8 +111,14 @@ export default function PaginaInicial() {
               {appConfig.name}
             </Text>
 
-            {/* <TextField
+            <TextField
               fullWidth
+              value={username}
+              onChange={(event) => {
+                console.log('algo mudou', event.target.value)
+                const valor = event.target.value
+                setUserName(valor)
+              }}
               textFieldColors={{
                 neutral: {
                   textColor: appConfig.theme.colors.neutrals[200],
@@ -121,17 +127,16 @@ export default function PaginaInicial() {
                   backgroundColor: appConfig.theme.colors.neutrals[800],
                 },
               }}
-            /> */}
-            <input
-              value={username}
+            />
+            {/* <input
               type="text"
-              onChange={(event) =>{
+              value={username}
+              onChange={(event) => {
                 console.log('algo mudou', event.target.value)
                 const valor = event.target.value
                 setUserName(valor)
-              }
-              }
-            />
+              }}
+            /> */}
             <Button
               type="submit"
               label="Entrar"
