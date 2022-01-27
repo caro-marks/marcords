@@ -3,37 +3,6 @@ import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import { useState } from 'react'
 import {useRouter} from 'next/router'
 
-function GlobalStyle() {
-  return (
-    <style jsx>{`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        list-style: none;
-      }
-      body {
-        font-family: 'Open Sans', sans-serif;
-      }
-      /* App fit Height */
-      html,
-      body,
-      #__next {
-        min-height: 100vh;
-        display: flex;
-        flex: 1;
-      }
-      #__next {
-        flex: 1;
-      }
-      #__next > * {
-        flex: 1;
-      }
-      /* ./App fit Height */
-    `}</style>
-  )
-}
-
 function Titulo(props) {
   const Tag = props.tag || 'h1'
   return (
@@ -51,13 +20,11 @@ function Titulo(props) {
 }
 
 export default function PaginaInicial() {
-  // const username = 'caro-marks'
   const [username, setUserName] = useState('caro-marks')
   const roteamento = useRouter()
 
   return (
     <>
-      <GlobalStyle />
       <Box
         styleSheet={{
           display: 'flex',
@@ -135,15 +102,6 @@ export default function PaginaInicial() {
                 },
               }}
             />
-            {/* <input
-              type="text"
-              value={username}
-              onChange={(event) => {
-                console.log('algo mudou', event.target.value)
-                const valor = event.target.value
-                setUserName(valor)
-              }}
-            /> */}
             <Button
               type="submit"
               label="Entrar"
