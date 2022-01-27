@@ -1,36 +1,7 @@
 import appConfig from '../config.json'
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
-
-function GlobalStyle() {
-  return (
-    <style jsx>{`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        list-style: none;
-      }
-      body {
-        font-family: 'Open Sans', sans-serif;
-      }
-      /* App fit Height */
-      html,
-      body,
-      #__next {
-        min-height: 100vh;
-        display: flex;
-        flex: 1;
-      }
-      #__next {
-        flex: 1;
-      }
-      #__next > * {
-        flex: 1;
-      }
-      /* ./App fit Height */
-    `}</style>
-  )
-}
+import { useState } from 'react'
+import {useRouter} from 'next/router'
 
 function Titulo(props) {
   const Tag = props.tag || 'h1'
@@ -48,23 +19,12 @@ function Titulo(props) {
   )
 }
 
-// function HomePage() {
-//   return (
-//     <div>
-//       <Titulo tag="h1"> Welcome to the jungle! </Titulo>
-//       <h2> AluraCord lesk </h2>
-//     </div>
-//   )
-// }
-
-// export default HomePage
-
 export default function PaginaInicial() {
-  const username = 'caro-marks'
+  const [username, setUserName] = useState('caro-marks')
+  const roteamento = useRouter()
 
   return (
     <>
-      <GlobalStyle />
       <Box
         styleSheet={{
           display: 'flex',
@@ -99,6 +59,11 @@ export default function PaginaInicial() {
           {/* Formulário */}
           <Box
             as="form"
+            onSubmit={(event)=>{
+              event.preventDefault()
+              console.log('alguem submeteu');
+              roteamento.push('/chat')
+            }}
             styleSheet={{
               display: 'flex',
               flexDirection: 'column',
@@ -122,6 +87,12 @@ export default function PaginaInicial() {
 
             <TextField
               fullWidth
+              value={username}
+              onChange={(event) => {
+                console.log('algo mudou', event.target.value)
+                const valor = event.target.value
+                setUserName(valor)
+              }}
               textFieldColors={{
                 neutral: {
                   textColor: appConfig.theme.colors.neutrals[200],
